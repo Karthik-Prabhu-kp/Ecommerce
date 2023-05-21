@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import "./Home.css";
 
 export default function Home() {
 
+    const navigate = useNavigate();
     const [categories,setCategories] = useState();
 
     const getCategoryData = async() => {
@@ -25,7 +27,7 @@ export default function Home() {
   return (
     <div className='home-container'>
         <div className='banner'>
-            <div className='banner-content'>
+            <div className='banner-content' onClick={() => navigate("/Products")}>
             <h4>Welcome to Fitwear</h4>
             <h1>Your one stop</h1>
             <h1>fitness shop</h1>
