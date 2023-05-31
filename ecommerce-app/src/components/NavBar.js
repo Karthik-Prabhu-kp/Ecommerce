@@ -8,10 +8,10 @@ function NavBar() {
     const navigate = useNavigate();
 
   return (
-    <div>
-        <NavLink to="/">Home Name</NavLink>
-        <input className='search-container' type='search' name='search'/>
-        <ul>
+    <div className='nav-main'>
+        <NavLink to="/">appHomePage</NavLink>
+        <input className='search-container' type='search' placeholder='Search'/>
+        <ul className='nav-links'>
             <li className='icon' onClick={() => navigate("/WishList")}>
                 <div>
                     <i class="fa-solid fa-heart"></i>

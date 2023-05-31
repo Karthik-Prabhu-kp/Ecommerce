@@ -1,11 +1,43 @@
 
-.banner {
-    border: 3px solid red;
-    Height: 500px;
-    width: 400px;
-    margin: auto;
+.home-container{
+    color: slategray;
 }
 
-.banner-content {
+.banner-content{
     
+}
+
+
+.banner {
+    border: 3px solid red;
+    
+    margin: auto;
+    margin-top: 50px;
+    height: 50vh;
+    width: 80%;
+}
+
+.categories-container{
+   padding: 3rem;
+   display: flex;
+   align-content: center;
+   justify-content: center;
+}
+
+.categories-container div {
+    align-items: center;
+    margin: 10px;
+
+}
+
+.categories-list{
+    padding: 2rem;
+}
+
+.categories-list {
+    display: inline-block;
+    padding: 0px 16px;
+    border: solid 1px lightskyblue;
+    border-radius: 0.75rem;
+    padding: 2rem;
 }

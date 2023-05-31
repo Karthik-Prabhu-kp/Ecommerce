@@ -1,5 +1,38 @@
 
-.temp-card {
-    padding: 1rem;
-    margin-bottom: 50;
+.card-container{
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background-color: rgb(188, 210, 241);
+    
+    padding: 0.5rem;
+    margin:10px;
+    border: solid 1px black;
+    justify-content: center;
+}
+
+.card-info{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.card-img{
+    height: 300px;
+    width: 270px;
+    
+    right:10px;
+    top:5px;
+    
+}
+
+.card-wish-list{
+    color: beige;
+    font-size: 20px;
+    position: relative;
+    right: -250px;
+    top: -275px;
+    cursor: pointer;
+    
+    
 }

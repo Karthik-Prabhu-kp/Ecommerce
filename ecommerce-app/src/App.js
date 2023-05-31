@@ -8,7 +8,8 @@ import WishList from "./pages/WishList/WishList";
 import Cart from "./pages/Cart/Cart";
 import User from "./pages/User/User";
 import Error from "./pages/Error/Error";
-import Products from "./pages/Products/Products";
+import ProductLanding from "./pages/Products/ProductLanding";
+import ProductDetails from "./pages/Products/ProductDetails";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/wishList" element={<WishList />} />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/User" element={<User />} />
-        <Route path="/Products" element={<Products />} />
+        <Route path="/ProductLanding" element={<ProductLanding />} />
+        <Route path="/ProductLanding/:id" element={<ProductDetails />} />
         <Route path="*" element={<Error />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
