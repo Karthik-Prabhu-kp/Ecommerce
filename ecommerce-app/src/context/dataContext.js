@@ -19,7 +19,6 @@ function DataProvider({children}){
         });
 
         const {data: products} = await axios.get("/api/products");
-        console.log(products.products,"api for products")
         dispatch({
           type: ACTION_TYPE.SET_INITIAL_PRODUCTS,
           payload: products.products,
@@ -30,13 +29,18 @@ function DataProvider({children}){
     })();
   }, []);
 
-
+  
   return (
     <DataContext.Provider
     value={{
       category: state.category,
       products: state.products,
-      filteredProducts: state.filteredProducts,
+      filterByPrice: state.filterByPrice,
+      filterByRating: state.filterByRating,
+      token: state.token,
+      cart: state.cart,
+      wishList: state.wishList,
+      dataDispatch: dispatch,
       
     }}
   >
@@ -45,5 +49,8 @@ function DataProvider({children}){
   )
 }
 const useData = () => useContext(DataContext);
+// const dataDispatch = (obj) => {
+//   return dispatch(obj)
+//  };
 
 export  {DataProvider,useData}

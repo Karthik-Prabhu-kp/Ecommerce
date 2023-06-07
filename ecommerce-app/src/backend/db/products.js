@@ -10,7 +10,7 @@ export const products = [
     _id: uuid(),
     title: "You Can WIN",
     author: "Shiv Khera",
-    price: "5000",
+    price: "750",
     categoryName: "non-fiction",
     rating: "5"
   },
@@ -18,7 +18,7 @@ export const products = [
     _id: uuid(),
     title: "You are Winner",
     author: "Junaid Qureshi",
-    price: "3000",
+    price: "1000",
     categoryName: "horror",
     rating: "3"
   },
@@ -26,8 +26,16 @@ export const products = [
     _id: uuid(),
     title: "Think and Grow Rich",
     author: "Shiv Khera",
-    price: "1000",
+    price: "500",
     categoryName: "fiction",
+    rating: "2"
+  },
+  {
+    _id: uuid(),
+    title: "Harry Potter",
+    author: "J.K.Rowling",
+    price: "100",
+    categoryName: "non-fiction",
     rating: "4.5"
   },
 ];

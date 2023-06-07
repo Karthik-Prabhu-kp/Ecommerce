@@ -4,30 +4,29 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Home.css";
 import { useData } from '../../context/dataContext';
+import { ACTION_TYPE } from '../../utils/constants';
+import { categorySort } from '../../utils/dataHelper';
 
 //useData
 export default function Home() {
 
-    const {category} = useData()
+    const {category,cart,dataDispatch,getCategoryData,products} = useData()
+    console.log(cart)
     const navigate = useNavigate();
-    const [categories,setCategories] = useState();
 
-    const getCategoryData = async() => {
-        try{
-            const response = await axios ("/api/categories");
-            setCategories(response.data.categories)
-            
-        }
-        catch(e) {
-            console.error()
-        }
-    }
+    const categoryHandler = (categoryName,isChecked) => {
+        dataDispatch({
+          type: ACTION_TYPE.SORT_BY_CATEGORY,
+          payload: {
+            categoryName: categoryName,
+            isChecked: isChecked,
+          }
+        });
 
-    useEffect(e => {
-        getCategoryData()
-    },[])
-
-
+        const filteredProducts = categorySort(products, category);
+        navigate("/productLanding");
+      };
+   
   return (
     <div className='home-container'>
         <div className='banner'>
@@ -43,7 +42,7 @@ export default function Home() {
                 {category && 
                  category.map(({_id,categoryName,description}) => {
                     return(
-                        <div className='categories-list'>
+                        <div className='categories-list' onClick={() => categoryHandler(categoryName) }>
                             <div id={_id}>
                                 <h4>{categoryName}</h4>
                                 <p>{description}</p>

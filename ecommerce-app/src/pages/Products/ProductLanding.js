@@ -4,44 +4,31 @@ import axios from "axios";
 import "../Products/Product.css"
 import ProductCard from './ProductCard';
 import Filters from '../Filters.js/Filters';
+import { useData } from '../../context/dataContext';
+import { categorySort,getFilteredProducts } from '../../utils/dataHelper';
 
 
 
 function ProductLanding() {
 
-    const [productList,SetproductList] = useState([]);
-    const getProductsData = async() => {
-        try{
-            const response = await axios ("/api/products");
-            SetproductList(response.data.products)
-    
-        }
-        catch(e) {
-            console.error()
-        }
-    }
+    const {filterByPrice,filterByRating,products,category} = useData();
 
-    useEffect(e => {
-        getProductsData()
-    },[])
+    const categoryFiltered = categorySort(products,category);
+    const filteredProducts = getFilteredProducts(categoryFiltered, filterByPrice, filterByRating)
+    const isProductLength = filteredProducts && filteredProducts.length > 0
+
 
   return (
-    <div>
+    <div> 
         <div>
             <div>
                 <Filters />
             </div>
             <h2>Avilable Products</h2>
             <div className='card-container'>
-                { productList.map((product) => (<ProductCard key={product._id} product={product} />)
-                    // return(
-                    //     <div className='temp-card'>
-                    //         <p>{product.title }</p> 
-                    //         <p>Author: {product.author}</p>
-                    //         <button>Add to Cart</button>
-                    //     </div>
-                    // )
-                )}
+                {!isProductLength  ? products && products.map((product) => (<ProductCard key={product._id} product={product} />)) :
+                filteredProducts.map((product) => (<ProductCard key={product._id} product={product} />)) }
+                
             </div>
         </div>
     </div>

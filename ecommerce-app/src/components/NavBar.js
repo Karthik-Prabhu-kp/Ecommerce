@@ -22,7 +22,7 @@ function NavBar() {
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
             </li>
-            <li className='icon' onClick={() => navigate("/WishList")}>
+            <li className='icon' onClick={() => navigate("/UserLogin")}>
                 <div>
                     <i class="fa-solid fa-user"></i>
                 </div>
