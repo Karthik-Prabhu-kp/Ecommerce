@@ -35,16 +35,9 @@ const encodedToken = localStorage.getItem("token");
           </div>
         )
       })}
-      {/* {wishList.map(wishItem => {
-          return(
-            <div>
-                <div key={ Id }>
-                <p>{wishItem.Title}</p>
-                <p>{wishItem.Price}</p>
-                <button onClick={() => removeFromCart(Id)}>Move from Cart</button>
-            </div>; */}
+      
     </div>
   )
-}}
+}
 
 export default WishList
