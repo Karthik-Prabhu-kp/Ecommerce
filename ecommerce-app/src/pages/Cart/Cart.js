@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import { useData } from '../../context/DataContext';
+import { useData } from '../../context/dataContext';
 
 
 

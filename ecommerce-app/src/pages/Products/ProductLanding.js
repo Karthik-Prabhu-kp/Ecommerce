@@ -4,7 +4,7 @@ import axios from "axios";
 import "../Products/Product.css";
 import ProductCard from './ProductCard';
 import Filters from '../Filters/Filters';
-import { useData } from '../../context/DataContext';
+import { useData } from '../../context/dataContext';
 import { categorySort, getFilteredProducts } from '../../utils/dataHelper';
 import NavBar from '../../components/NavBar';
 

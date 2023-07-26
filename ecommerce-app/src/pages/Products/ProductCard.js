@@ -5,7 +5,7 @@ import { ACTION_TYPE } from '../../utils/constants';
 import { Navigate } from 'react-router-dom'
 
 import "../Products/Product.css"
-import { useData } from '../../context/DataContext'
+import { useData } from '../../context/dataContext'
 import { addToWishlist,isProductInWishlist, removeFromWishList } from '../../utils/wishlistHelper';
 
 function ProductCard(props) {

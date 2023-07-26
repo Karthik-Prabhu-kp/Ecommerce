@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
-import { useData } from '../../context/DataContext'
+import { useData } from '../../context/dataContext'
 import { ACTION_TYPE } from '../../utils/constants';
 
 import "./Filters.css"
