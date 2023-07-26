@@ -3,13 +3,14 @@ import axios from "axios";
 import { useData } from '../../context/DataContext';
 
 import NavBar from "../../components/NavBar";
+import { getWishlistProduct } from '../../utils/wishlistHelper';
 
 
 
 function WishList() {
-const {wishList} = useData();
+const { wishList } = useData();
 const encodedToken = localStorage.getItem("token");
-
+console.log("wish",wishList)
 //add to cart again
   const moveToCart = async (wishItem) => {
     // console.log(id)
@@ -25,12 +26,15 @@ const encodedToken = localStorage.getItem("token");
     // }
   };
 
+  useEffect(() => {
+    getWishlistProduct();
+  }, [])
 
   return (
     <div>
       <NavBar />
       <h2>Wishlist Items</h2>
-      {wishList.map(wishItem => {
+      {wishList.length > 1  ?  [ ].map(wishItem => {
         return(
           <div>
             <p>{wishItem.Title}</p>
@@ -38,7 +42,7 @@ const encodedToken = localStorage.getItem("token");
             <button onClick={() => moveToCart(wishItem)}>Move from Cart</button>
           </div>
         )
-      })}
+      }): <p>No products wishlisted</p>}
       
     </div>
   )

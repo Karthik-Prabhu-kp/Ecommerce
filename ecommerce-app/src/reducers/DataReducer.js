@@ -82,6 +82,7 @@ export function DataReducer(state,action) {
                     
               };
         case ACTION_TYPE.ADD_TO_WISHLIST:
+          console.log("in reducer",action.payload)
                 return { 
                     ...state,
                     wishList: action.payload

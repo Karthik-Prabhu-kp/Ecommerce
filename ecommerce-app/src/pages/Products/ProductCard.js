@@ -6,16 +6,16 @@ import { Navigate } from 'react-router-dom'
 
 import "../Products/Product.css"
 import { useData } from '../../context/DataContext'
-import { addToWishlist,isProductInWishlist } from '../../utils/wishlistHelper';
+import { addToWishlist,isProductInWishlist, removeFromWishList } from '../../utils/wishlistHelper';
 
 function ProductCard(props) {
 
     let products = props.product
     
     const [btnClicked,setBtnClicked] = useState(false);
-    const [wishClicked,setWishClicked] = useState(false)
-    const {dataDispatch,state} = useData();
-
+    // const [wishClicked,setWishClicked] = useState(false)
+    const {dataDispatch,state,wishList} = useData();
+    console.log("card wish",wishList)
     const navigate = useNavigate();
     const {id} = useParams();
 
@@ -26,9 +26,9 @@ function ProductCard(props) {
       if (storedBtnClicked) {
         setBtnClicked(true);
       }
-      if (storedWishClicked) {
-        setWishClicked(true);
-      }
+      // if (storedWishClicked) {
+      //   setWishClicked(true);
+      // }
     }, [])
     const encodedToken = localStorage.getItem("token");
 
@@ -63,7 +63,7 @@ function ProductCard(props) {
     };
 
 
-    const wishClickHandler = () => {
+    const wishlistHandler = () => {
       const wishedProduct = {
               Id: `${products._id}`,
               Title: `${products.title}`,
@@ -72,31 +72,30 @@ function ProductCard(props) {
               Price: `${products.price}`,
             };
 
-      if (isProductInWishlist(state.wishlist, products._id)) {
-        navigate("/wishlist");
+      if (isProductInWishlist(wishList, products._id)) {
+        removeFromWishList(encodedToken,dataDispatch,)
       } else {
-        addToWishlist(wishedProduct,encodedToken,dataDispatch);
+        addToWishlist(wishedProduct,encodedToken,dataDispatch,products._id);
     };}
+
     
   return (
     <section key={products._id} className='card'>
          <span
           role="button"
           className="card-wish-list"
-          onClick={wishClickHandler}
-          disabled={wishClicked}
+          onClick={() => wishlistHandler()}
           >
             <i class="fa-solid fa-heart"></i>
           </span>
           <img
             className='card-img'
-            src={products.image}//hard coded value
+            src={products.image}
             alt="prd_img"
             onClick={() => navigate(`/ProductLanding/${products._id}`)}
           />
           <div className='card-info'>
               <p>{products.title}</p>
-              {/* <p>Author: {products.author}</p> */}
               <p>Price: Rs.{products.price}</p>
               <button onClick={addToCart} disabled={btnClicked}>Add to Cart</button>
           </div>
