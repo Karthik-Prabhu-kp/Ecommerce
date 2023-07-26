@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from "axios";
-import { useData } from '../../context/dataContext';
+import { useData } from '../../context/DataContext';
 import { ACTION_TYPE } from '../../utils/constants';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 function UserLogin() {
@@ -9,22 +11,8 @@ function UserLogin() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const {token,dataDispatch} = useData();
-
-  const clickHandler = async () => { 
-      try {
-        const {data: response} = await axios.post('/api/auth/login', {
-          email: `${email}`,
-          password: `${password}`,
-        });
-        localStorage.setItem("token", response.encodedToken)
-        dataDispatch({
-          type:ACTION_TYPE.GET_AUTH_TOKEN,
-          payload: response.encodedToken
-        }) 
-      } catch (error) {
-        console.error(error); // Handle any errors
-      }
-    };
+  const { loginClicked } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -33,8 +21,8 @@ function UserLogin() {
       <input onChange={(event) => setEmail(event.target.value)}  name="email"/>
       <label>Password:</label>
       <input onChange={(event) => setPassword(event.target.value)} name="password" />
-      <button onClick={clickHandler}>Sign in</button>
-      <p>Create Account</p>
+      <button onClick={() => loginClicked(email,password)}>Sign in</button>
+      <p onClick={() => navigate("/UserSignup")}>Create Account</p>
     </div>
   )
 }

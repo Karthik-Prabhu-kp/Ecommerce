@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import { useData } from '../../context/dataContext';
+import { useData } from '../../context/DataContext';
 
 
 
 function Cart() {
-
+  
   const {token,cart: contextCart } = useData();
   const isCartLength = contextCart && contextCart.cart && contextCart.cart.length > 0
   const encodedToken = localStorage.getItem("token");
   console.log(encodedToken)
-  // console.log(cart,"in cart render")
+  
 
   const removeFromCart = async (id) => {
     console.log(id)
@@ -22,7 +22,7 @@ function Cart() {
       });
       console.log(data,"after removd")
     } catch (error) {
-      console.error(error); // Handle any errors
+      console.error(error);
     }
   };
 

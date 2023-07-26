@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import { useData } from '../../context/dataContext';
+import { useData } from '../../context/DataContext';
+
+import NavBar from "../../components/NavBar";
 
 
 
@@ -26,6 +28,8 @@ const encodedToken = localStorage.getItem("token");
 
   return (
     <div>
+      <NavBar />
+      <h2>Wishlist Items</h2>
       {wishList.map(wishItem => {
         return(
           <div>

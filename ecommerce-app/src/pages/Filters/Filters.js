@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
-import { useData } from '../../context/dataContext'
+import { useData } from '../../context/DataContext'
 import { ACTION_TYPE } from '../../utils/constants';
+
+import "./Filters.css"
 
 function Filters() {
     
@@ -94,67 +96,66 @@ function Filters() {
     
      
   return (
-    <section>
+    <div className="filters-container">
+      <div className="filter-heading">
         <h2>Filters</h2>
         <span onClick={clearFiltersHandler}>Clear filters</span>
-        <div>
-            <h3>Price</h3>
-            <div>
-            <p>100</p>
-            <p>500</p>
-            <p>1000</p>
-          </div>
-            <div>
-            <input 
-                type='range'
-                min="100"
-                max="1000"
-                step="20"
-                name="range"
-                value={priceFilter}
-                onChange={(e) => priceFilterHandler(e)}
-            />
-            </div>
+      </div>
+      <div className="filter-section">
+        <h3>Price</h3>
+        <div className="price-tags">
+          <p>500</p>
+          <p>2,500</p>
+          <p>5000</p>
         </div>
-        <div>
-            <h3>Categories</h3>
-            <div>
-            {category.map((categoryItem, index) => (
-                <div key={index}>
-                    <p>{categoryItem.categoryName}</p>
-                    <input
-                    type="checkbox"
-                    name={categoryItem.categoryName}
-                    checked={categoryItem.isChecked}
-                    onChange={(event) =>
-                        categoryFilterHandler(categoryItem.categoryName, event.target.checked)
-                    }
-                    />
-                </div>
-                ))}
-            </div>
+        <div className="price-range">
+          <input
+            type='range'
+            min="500"
+            max="5000"
+            step="100"
+            name="range"
+            value={priceFilter}
+            onChange={(e) => priceFilterHandler(e)}
+          />
         </div>
-        <div>
-            <h3></h3>
-            <div>
-            {rates.map(rate => {
-                return(
-                    <div>
-                    <p>Ratings {rate} and above</p>
-                    <input 
-                        type='radio'
-                        name='rating'
-                        value={rate}
-                        checked={selectedRating === rate.toString()}
-                        onChange={(e) => ratingFilterHandler(e.target.value)}                 
-                    />
-                    </div>
-                );
-            })}
+      </div>
+      <div className="filter-section">
+        <h3>Categories</h3>
+        <div className="category-list">
+          {category.map((categoryItem, index) => (
+            <div key={index}>
+              <p>{categoryItem.categoryName}</p>
+              <input
+                type="checkbox"
+                name={categoryItem.categoryName}
+                checked={categoryItem.isChecked}
+                onChange={(event) =>
+                  categoryFilterHandler(categoryItem.categoryName, event.target.checked)
+                }
+              />
             </div>
+          ))}
         </div>
-
-    </section>);
+      </div>
+      <div className="filter-section">
+        <h3>Ratings</h3>
+        <div className="rating-list">
+          {rates.map(rate => (
+            <div key={rate}>
+              <p>Ratings {rate} and above</p>
+              <input
+                type='radio'
+                name='rating'
+                value={rate}
+                checked={selectedRating === rate.toString()}
+                onChange={(e) => ratingFilterHandler(e.target.value)}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>);
 }
 
 

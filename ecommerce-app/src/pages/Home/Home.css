@@ -1,21 +1,66 @@
 
-.home-container{
-    color: slategray;
-}
-
-.banner-content{
-    
-}
-
-
 .banner {
-    border: 3px solid red;
+    /* border: 3px solid red; */
     
-    margin: auto;
+
     margin-top: 50px;
-    height: 50vh;
-    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    position: relative;
+    width: 95%;
+    height: 500px; /* Set a maximum height for the banner */
+    overflow: hidden; /* Hide any overflow if the image is larger than the container */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.banner-content {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  /* .banner-content h4 {
+    font-size: 1.2rem;
+  } */
+  
+  .banner-content h1 {
+    font-size: 3rem; /* Add your desired font size */
+    margin-bottom: 0.5rem; /* Add any other spacing as needed */
+  }
+
+  .banner-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .banner-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+
+
+
+
 
 .categories-container{
    padding: 3rem;
@@ -30,14 +75,35 @@
 
 }
 
-.categories-list{
-    padding: 2rem;
-}
-
 .categories-list {
-    display: inline-block;
+    /* display: inline-block;
     padding: 0px 16px;
     border: solid 1px lightskyblue;
     border-radius: 0.75rem;
-    padding: 2rem;
+
+     width: 200px; /* Set a fixed width for each card */
+     /* height: 300px; Set a fixed height for each card */
+
+    /* padding: 2rem; */ 
+
+   
+
+    display: inline-block;
+    
+    border: solid 1px lightskyblue;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.categories-list img {
+    width: 400px; 
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+}
+
+.categories-list h4 {
+    margin-top: 0.5rem;
 }

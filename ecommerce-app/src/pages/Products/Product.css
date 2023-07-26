@@ -1,7 +1,8 @@
 
 .card-container{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -36,3 +37,33 @@
     
     
 }
+
+
+/* product landing */
+
+  
+  
+  .main-container {
+    display: flex;
+    margin-top: 60px; /* To push the main content below the fixed NavBar */
+  }
+  
+  .filter-container {
+    flex: 0 0 300px; /* The filter container takes a fixed width of 200px as a sidebar */
+    padding: 10px;
+    background-color: #f1f1f1;
+  }
+  
+  .product-container {
+    flex: 1; /* The product container takes the remaining space */
+    padding: 10px;
+  }
+  
+  /* .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  } */
+  
+
+  

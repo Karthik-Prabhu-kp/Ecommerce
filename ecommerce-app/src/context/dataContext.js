@@ -17,7 +17,7 @@ function DataProvider({children}){
           type: ACTION_TYPE.SET_INITIAL_CATEGORIES,
           payload: response.categories,
         });
-
+        console.log("initial category",response.categories)
         const {data: products} = await axios.get("/api/products");
         dispatch({
           type: ACTION_TYPE.SET_INITIAL_PRODUCTS,
@@ -33,6 +33,7 @@ function DataProvider({children}){
   return (
     <DataContext.Provider
     value={{
+      state,
       category: state.category,
       products: state.products,
       filterByPrice: state.filterByPrice,

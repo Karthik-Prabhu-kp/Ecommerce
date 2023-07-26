@@ -5,14 +5,16 @@ import { ACTION_TYPE } from '../../utils/constants';
 import { Navigate } from 'react-router-dom'
 
 import "../Products/Product.css"
-import { useData } from '../../context/dataContext'
+import { useData } from '../../context/DataContext'
+import { addToWishlist,isProductInWishlist } from '../../utils/wishlistHelper';
 
 function ProductCard(props) {
 
     let products = props.product
+    
     const [btnClicked,setBtnClicked] = useState(false);
     const [wishClicked,setWishClicked] = useState(false)
-    const {token,dataDispatch} = useData();
+    const {dataDispatch,state} = useData();
 
     const navigate = useNavigate();
     const {id} = useParams();
@@ -60,35 +62,21 @@ function ProductCard(props) {
       }
     };
 
-    const wishClickHandler = async() => {
-      try {
-        const product = {
-          Id: `${products._id}`,
-          Title: `${products.title}`,
-          Author: `${products.author}`,
-          Category: `${products.categoryName}`,
-          Price: `${products.price}`,
-        };
-        const requestBody = {
-          product: product
-        };
 
-        const data = await axios.post('/api/user/wishlist', requestBody, {
-          headers: {
-            authorization: encodedToken,
-          }
-        });
-        setWishClicked(true)
-        dataDispatch({
-          type:ACTION_TYPE.ADD_TO_CART,
-          payload: data.wishList
-        })
-        localStorage.setItem(`wishClicked_${products._id}`, true);
-      } catch (error) {
-        console.error(error); // Handle any errors
-      }
+    const wishClickHandler = () => {
+      const wishedProduct = {
+              Id: `${products._id}`,
+              Title: `${products.title}`,
+              Author: `${products.author}`,
+              Category: `${products.categoryName}`,
+              Price: `${products.price}`,
+            };
 
-    };
+      if (isProductInWishlist(state.wishlist, products._id)) {
+        navigate("/wishlist");
+      } else {
+        addToWishlist(wishedProduct,encodedToken,dataDispatch);
+    };}
     
   return (
     <section key={products._id} className='card'>
@@ -102,14 +90,14 @@ function ProductCard(props) {
           </span>
           <img
             className='card-img'
-            src='https://loremflickr.com/640/360'
-            alt="name"
+            src={products.image}//hard coded value
+            alt="prd_img"
             onClick={() => navigate(`/ProductLanding/${products._id}`)}
           />
           <div className='card-info'>
-              <p>{products.title }</p>
-              <p>Author: {products.author}</p>
-              <p>Price: {products.price}</p>
+              <p>{products.title}</p>
+              {/* <p>Author: {products.author}</p> */}
+              <p>Price: Rs.{products.price}</p>
               <button onClick={addToCart} disabled={btnClicked}>Add to Cart</button>
           </div>
     </section>

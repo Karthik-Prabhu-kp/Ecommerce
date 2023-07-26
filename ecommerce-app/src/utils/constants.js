@@ -6,7 +6,11 @@ export const ACTION_TYPE = {
     SORT_BY_PRICE:"SORT_BY_PRICE",
     SORT_BY_RATING:"SORT_BY_RATING",
     SORT_BY_CATEGORY:"SORT_BY_CATEGORY",
-    GET_AUTH_TOKEN:"GET_AUTH_TOKEN"
+    GET_AUTH_TOKEN:"GET_AUTH_TOKEN",
+    SET_LOGIN_USER:"SET_LOGIN_USER",
+    ADD_TO_WISHLIST: "ADD_TO_WISHLIST",
     
   };
+
+export const bannerImage = "https://img.freepik.com/free-photo/side-view-shot-fit-young-athletic-man-jumping-running_158595-4642.jpg?w=1380&t=st=1690227078~exp=1690227678~hmac=8565da9e96e46760cf4ea3fe0b8426519ca613bb326ffce7c75770397a7c0bd6";
   

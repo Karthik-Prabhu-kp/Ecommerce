@@ -8,7 +8,6 @@ export const initialState = {
   wishList:[],
   filteredByRating: "",
   categoryFilter:"",
-  token: "",
   //shuld i filter here or have a util
   
 };//all my states for data related stuff 
@@ -23,7 +22,9 @@ export function DataReducer(state,action) {
           };
         case ACTION_TYPE.SET_INITIAL_CATEGORIES:
           const categoryArr = action.payload.map((category) => ({
-            categoryName: category.categoryName,
+            // categoryName: category.categoryName,
+            // image: category.image,
+            ...category,
             isChecked: false,
           }));
           return {
@@ -68,12 +69,6 @@ export function DataReducer(state,action) {
                   category: updatedCategory,
                   // Reset any other filter-related state properties to their default values
                 };
-
-        case ACTION_TYPE.GET_AUTH_TOKEN:
-                return { 
-                    ...state,
-                    token: action.payload
-              };
         case ACTION_TYPE.ADD_TO_CART:
                 return { 
                     ...state,
@@ -84,6 +79,12 @@ export function DataReducer(state,action) {
                 return { 
                     ...state,
                     cart: action.payload
+                    
+              };
+        case ACTION_TYPE.ADD_TO_WISHLIST:
+                return { 
+                    ...state,
+                    wishList: action.payload
                     
               };
         default:
